@@ -21,11 +21,10 @@ Setup
 		sudo apt-get update && sudo apt-get install s3cmd
 	
 3.Get your key and secret key at this [link](https://aws-portal.amazon.com/gp/aws/developer/account/index.html?ie=UTF8&action=access-key)
-
 4. Configure s3cmd to work with your account
 
 		s3cmd --configure
-	
+
 5. Make a bucket
 
 		s3cmd mb s3://my-database-backups
