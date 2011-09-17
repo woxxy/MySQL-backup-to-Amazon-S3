@@ -4,7 +4,7 @@
 # Under a MIT license
 
 # dump all databases
-mysqldump --quick --user=youruser --password=yourpassword --all-databases > ~/all-databases.sql
+mysqldump --quick --user=youruser --password=yourpassword --single-transaction --all-databases > ~/all-databases.sql
 
 if [ $1 != month ]
 then
