@@ -24,7 +24,7 @@ else
 fi
 
 # we want at least two backups, two months, two weeks, and two days
-s3cmd del --recursive s3://${S3BUCKET}/my-database-backups/previous_${PERIOD}/
+s3cmd del --recursive s3://${S3BUCKET}/previous_${PERIOD}/
 s3cmd mv --recursive s3://${S3BUCKET}/${PERIOD}/ s3://${S3BUCKET}/previous_${PERIOD}/
 
 # upload all databases
