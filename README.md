@@ -1,7 +1,7 @@
 woxxy / MySQL-backup-to-Amazon-S3
 =================================
 
-Amazon S3 can be a ridiculously safe and cheap way to store your important data. Some of the most important data in the world is saved in... MySQL, and surely mine is quite important, so I needed such a script.
+Amazon S3 can be an interestingly safe and cheap way to store your important data. Some of the most important data in the world is saved in... MySQL, and surely mine is quite important, so I needed such a script.
 
 If you have a 500mb database (that's 10 times larger than any small site), with the priciest plan, keeping 6 backups (two months, two weeks, two days) costs $0.42 a month ($0.14GB/month). With 99.999999999% durability and 99.99% availability. Uploads are free, downloads would happen only in case you actually need to retrieve the backup (which hopefully won't be needed, but first GB is free, and over that $0.12/GB).
 
