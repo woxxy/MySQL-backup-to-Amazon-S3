@@ -24,11 +24,11 @@ Setup
 
 4. Configure s3cmd to work with your account
 
-	s3cmd --configure
+		s3cmd --configure
 	
 5. Make a bucket
 
-	s3cmd mb s3://my-database-backups
+		s3cmd mb s3://my-database-backups
 	
 6. Put the mysqltos3.sh file somewhere in your server, like `/home/youruser`
 7. Give the file 755 permissions `chown 755 /home/youruser/mysqltos3.sh` or via FTP
