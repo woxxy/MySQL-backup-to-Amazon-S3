@@ -3,6 +3,7 @@
 # Updates etc at: https://github.com/woxxy/MySQL-backup-to-Amazon-S3
 # Under a MIT license
 
+# change these variables to what you need
 MYSQLROOT=root
 MYSQLPASS=password
 S3BUCKET=mybucket
