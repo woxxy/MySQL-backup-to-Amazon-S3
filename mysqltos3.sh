@@ -6,10 +6,12 @@
 # change these variables to what you need
 MYSQLROOT=root
 MYSQLPASS=password
-S3BUCKET=mybucket
+S3BUCKET=my-db-backup-bucket
+# when running via cron, the PATHs MIGHT be different. If you have a custom/manual MYSQL install, you should set this manually like MYSQLDUMPPATH=/usr/local/mysql/bin/
+MYSQLDUMPPATH=
 
 # dump all databases
-mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} --single-transaction --all-databases > ~/all-databases.sql
+${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} --single-transaction --all-databases > ~/all-databases.sql
 
 if [ $1 != month ]
 then
