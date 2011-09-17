@@ -19,8 +19,8 @@ Setup
 	wget -O- -q http://s3tools.org/repo/deb-all/stable/s3tools.key | sudo apt-key add -
 	sudo wget -O/etc/apt/sources.list.d/s3tools.list http://s3tools.org/repo/deb-all/stable/s3tools.list
 	sudo apt-get update && sudo apt-get install s3cmd
-
-3.Get your key and secret key at this [link](https://aws-portal.amazon.com/gp/aws/developer/account/index.html?ie=UTF8&action=access-key
+	
+3.Get your key and secret key at this [link](https://aws-portal.amazon.com/gp/aws/developer/account/index.html?ie=UTF8&action=access-key)
 
 4. Configure s3cmd to work with your account
 
