@@ -17,7 +17,7 @@ echo "Selected period: $PERIOD."
 echo "Starting backing up the database to a file..."
 
 # dump all databases
-${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} --single-transaction --all-databases > ~/all-databases.sql
+${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} --all-databases > ~/all-databases.sql
 
 echo "Done backing up the database to a file."
 echo "Starting compression..."
