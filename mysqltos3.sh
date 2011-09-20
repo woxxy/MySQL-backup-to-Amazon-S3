@@ -20,7 +20,7 @@ echo "Starting backing up the database to a file..."
 ${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} --single-transaction --all-databases > ~/all-databases.sql
 
 echo "Done backing up the database to a file."
-eco "Starting compression..."
+echo "Starting compression..."
 
 tar czf ~/all-databases.tar.gz ~/all-databases.sql
 
