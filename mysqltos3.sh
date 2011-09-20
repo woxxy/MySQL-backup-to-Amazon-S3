@@ -37,7 +37,7 @@ echo "Past backup moved."
 
 # upload all databases
 echo "Uploading the new backup..."
-s3cmd put --encrypt -f ~/all-databases.tar.gz s3://${S3BUCKET}/${PERIOD}/
+s3cmd put -f ~/all-databases.tar.gz s3://${S3BUCKET}/${PERIOD}/
 echo "New backup uploaded."
 
 echo "Removing the cache files..."
