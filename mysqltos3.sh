@@ -24,7 +24,7 @@ ${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} --
 echo "Done backing up the database to a file."
 echo "Starting compression..."
 
-tar czf ~/all-databases.tar.gz ~/all-databases.sql
+tar czf ${TMP_PATH}all-databases.tar.gz ${TMP_PATH}all-databases.sql
 
 echo "Done compressing the backup file."
 
@@ -39,12 +39,12 @@ echo "Past backup moved."
 
 # upload all databases
 echo "Uploading the new backup..."
-s3cmd put -f ~/all-databases.tar.gz s3://${S3BUCKET}/${PERIOD}/
+s3cmd put -f ${TMP_PATH}all-databases.tar.gz s3://${S3BUCKET}/${PERIOD}/
 echo "New backup uploaded."
 
 echo "Removing the cache files..."
 # remove databases dump
-rm ~/all-databases.sql
-rm ~/all-databases.tar.gz
+rm ${TMP_PATH}all-databases.sql
+rm ${TMP_PATH}all-databases.tar.gz
 echo "Files removed."
 echo "All done."
