@@ -9,6 +9,8 @@ MYSQLPASS=password
 S3BUCKET=my-db-backup-bucket
 # when running via cron, the PATHs MIGHT be different. If you have a custom/manual MYSQL install, you should set this manually like MYSQLDUMPPATH=/usr/local/mysql/bin/
 MYSQLDUMPPATH=
+#tmp path.
+TMP_PATH=~/
 
 PERIOD=${1-day}
 
@@ -17,7 +19,7 @@ echo "Selected period: $PERIOD."
 echo "Starting backing up the database to a file..."
 
 # dump all databases
-${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} --all-databases > ~/all-databases.sql
+${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} --all-databases > ${TMP_PATH}all-databases.sql
 
 echo "Done backing up the database to a file."
 echo "Starting compression..."
