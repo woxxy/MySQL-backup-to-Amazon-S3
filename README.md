@@ -32,7 +32,7 @@ Setup
 		s3cmd mb s3://my-database-backups
 	
 6. Put the mysqltos3.sh file somewhere in your server, like `/home/youruser`
-7. Give the file 755 permissions `chown 755 /home/youruser/mysqltos3.sh` or via FTP
+7. Give the file 755 permissions `chmod 755 /home/youruser/mysqltos3.sh` or via FTP
 8. Edit the variables near the top of the mysqltos3.sh file to match your bucket and MySQL authentication
 
 Now we're set. You can use it manually:
