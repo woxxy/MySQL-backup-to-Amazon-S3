@@ -6,7 +6,9 @@
 # change these variables to what you need
 MYSQLROOT=root
 MYSQLPASS=password
-S3BUCKET=my-db-backup-bucket
+S3BUCKET=bucketname
+FILENAME=filename
+DATABASE='--all-databases'
 # when running via cron, the PATHs MIGHT be different. If you have a custom/manual MYSQL install, you should set this manually like MYSQLDUMPPATH=/usr/local/mysql/bin/
 MYSQLDUMPPATH=
 #tmp path.
@@ -19,12 +21,12 @@ echo "Selected period: $PERIOD."
 echo "Starting backing up the database to a file..."
 
 # dump all databases
-${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} --all-databases > ${TMP_PATH}all-databases.sql
+${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} ${DATABASE} > ${TMP_PATH}${FILENAME}.sql
 
 echo "Done backing up the database to a file."
 echo "Starting compression..."
 
-tar czf ${TMP_PATH}all-databases.tar.gz ${TMP_PATH}all-databases.sql
+tar czf ${TMP_PATH}${FILENAME}.tar.gz ${TMP_PATH}${FILENAME}.sql
 
 echo "Done compressing the backup file."
 
@@ -39,12 +41,12 @@ echo "Past backup moved."
 
 # upload all databases
 echo "Uploading the new backup..."
-s3cmd put -f ${TMP_PATH}all-databases.tar.gz s3://${S3BUCKET}/${PERIOD}/
+s3cmd put -f ${TMP_PATH}${FILENAME}.tar.gz s3://${S3BUCKET}/${PERIOD}/
 echo "New backup uploaded."
 
 echo "Removing the cache files..."
 # remove databases dump
-rm ${TMP_PATH}all-databases.sql
-rm ${TMP_PATH}all-databases.tar.gz
+rm ${TMP_PATH}${FILENAME}.sql
+rm ${TMP_PATH}${FILENAME}.tar.gz
 echo "Files removed."
 echo "All done."
