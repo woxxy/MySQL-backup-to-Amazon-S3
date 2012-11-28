@@ -18,6 +18,8 @@ TMP_PATH=~/
 
 PERIOD=${1-day}
 
+DATESTAMP=$(date +".%m.%d.%Y")
+
 echo "Selected period: $PERIOD."
 
 echo "Starting backing up the database to a file..."
@@ -28,7 +30,7 @@ ${MYSQLDUMPPATH}mysqldump --quick --user=${MYSQLROOT} --password=${MYSQLPASS} ${
 echo "Done backing up the database to a file."
 echo "Starting compression..."
 
-tar czf ${TMP_PATH}${FILENAME}.tar.gz ${TMP_PATH}${FILENAME}.sql
+tar czf ${TMP_PATH}${FILENAME}${DATESTAMP}.tar.gz ${TMP_PATH}${FILENAME}.sql
 
 echo "Done compressing the backup file."
 
@@ -43,12 +45,12 @@ echo "Past backup moved."
 
 # upload all databases
 echo "Uploading the new backup..."
-s3cmd put -f ${TMP_PATH}${FILENAME}.tar.gz s3://${S3BUCKET}/${S3PATH}${PERIOD}/
+s3cmd put -f ${TMP_PATH}${FILENAME}${DATESTAMP}.tar.gz s3://${S3BUCKET}/${S3PATH}${PERIOD}/
 echo "New backup uploaded."
 
 echo "Removing the cache files..."
 # remove databases dump
 rm ${TMP_PATH}${FILENAME}.sql
-rm ${TMP_PATH}${FILENAME}.tar.gz
+rm ${TMP_PATH}${FILENAME}${DATESTAMP}.tar.gz
 echo "Files removed."
 echo "All done."
