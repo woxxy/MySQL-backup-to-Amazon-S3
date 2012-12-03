@@ -19,12 +19,16 @@ TMP_PATH=~/
 DATESTAMP=$(date +".%m.%d.%Y")
 DAY=$(date +"%d")
 DAYOFWEEK=$(date +"%A")
-if [ ${DAY} = "01" ]; then
-        PERIOD=month
-elif [ ${DAYOFWEEK} = "Sunday" ]; then
-        PERIOD=week
-else
-        PERIOD=day
+
+PERIOD=${1-day}
+if [ ${PERIOD} = "auto" ]; then
+	if [ ${DAY} = "01" ]; then
+        	PERIOD=month
+	elif [ ${DAYOFWEEK} = "Sunday" ]; then
+        	PERIOD=week
+	else
+       		PERIOD=day
+	fi	
 fi
 
 echo "Selected period: $PERIOD."
