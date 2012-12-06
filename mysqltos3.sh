@@ -16,9 +16,20 @@ MYSQLDUMPPATH=
 #tmp path.
 TMP_PATH=~/
 
-PERIOD=${1-day}
-
 DATESTAMP=$(date +".%m.%d.%Y")
+DAY=$(date +"%d")
+DAYOFWEEK=$(date +"%A")
+
+PERIOD=${1-day}
+if [ ${PERIOD} = "auto" ]; then
+	if [ ${DAY} = "01" ]; then
+        	PERIOD=month
+	elif [ ${DAYOFWEEK} = "Sunday" ]; then
+        	PERIOD=week
+	else
+       		PERIOD=day
+	fi	
+fi
 
 echo "Selected period: $PERIOD."
 
