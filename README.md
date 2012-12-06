@@ -55,6 +55,10 @@ But, we don't want to think about it until something breaks! So enter `crontab -
 	# monthly MySQL backup to S3
 	0 3 1 * * sh /home/youruser/mysqltos3.sh month
 
+Or, if you'd prefer to have the script determine the current date and day of the week, insert the following after editing the folders
+	# automatic daily / weekly / monthly backup to S3.
+	0 3 * * * sh /home/youruser/mysqltos3.sh auto
+
 And you're set.
 
 
