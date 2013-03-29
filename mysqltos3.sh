@@ -20,6 +20,7 @@ TMP_PATH=./
 
 # File to capture the output.
 OUTPUT_FILE=${TMP_PATH}output.log
+ECHO_OUTPUT=true
 
 # Email options.
 MAILPATH=
@@ -88,3 +89,8 @@ fi
 		echo "Sent mail."
 	fi
 } > ${OUTPUT_FILE} 2>&1
+
+if [ ${ECHO_OUTPUT} = true ]; then
+	cat ${OUTPUT_FILE}
+	rm ${OUTPUT_FILE}
+fi
