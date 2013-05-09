@@ -10,7 +10,7 @@ MONTH=$(date +"%-m")
 FILE_PATH=/tmp/databases.${DATESTAMP}.sql.gz
 
 # dump databases
-${MYSQLDUMPPATH}mysqldump --quick --user=root --password=****** --all-databases | gzip -c > ${FILE_PATH}
+${MYSQLDUMPPATH}mysqldump --quick --user=**** --password=****** --all-databases | gzip -c > ${FILE_PATH}
 
 # uploading new backup to period folder
 if [ ${DAY} = '1' ]; then
