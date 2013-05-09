@@ -1,3 +1,8 @@
+EDIT:
+
+Based on the below but without removing files. This can be done by setting expiration on separate folders in the bucket.
+
+
 woxxy / MySQL-backup-to-Amazon-S3
 =================================
 
