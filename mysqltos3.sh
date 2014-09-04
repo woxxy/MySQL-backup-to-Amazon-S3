@@ -8,6 +8,9 @@ MYSQLROOT=root
 MYSQLPASS=password
 S3BUCKET=bucketname
 FILENAME=filename
+# bindwidth unit: kB/s (KiloBytes per second)
+# to enable BANDWIDTH you should install trickle and libevent which tickle depends on (e.g. yum install libevent-devel && yum install trickle)
+BANDWIDTH=256
 DATABASE='--all-databases'
 # the following line prefixes the backups with the defined directory. it must be blank or end with a /
 S3PATH=mysql_backup/
@@ -56,7 +59,12 @@ echo "Past backup moved."
 
 # upload all databases
 echo "Uploading the new backup..."
-s3cmd put -f ${TMP_PATH}${FILENAME}${DATESTAMP}.tar.gz s3://${S3BUCKET}/${S3PATH}${PERIOD}/
+if command -v trickle >/dev/null 2>&1; then
+	echo "Limit bandwidth to ${BANDWIDTH}kB/s"
+	trickle -s -u ${BANDWIDTH} s3cmd put -f ${TMP_PATH}${FILENAME}${DATESTAMP}.tar.gz s3://${S3BUCKET}/${S3PATH}${PERIOD}/
+else
+	s3cmd put -f ${TMP_PATH}${FILENAME}${DATESTAMP}.tar.gz s3://${S3BUCKET}/${S3PATH}${PERIOD}/
+fi
 echo "New backup uploaded."
 
 echo "Removing the cache files..."
